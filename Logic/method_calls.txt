@@ -1,0 +1,58 @@
+File IO Class
+
+CALL FROM GRADEBOOK
+
+  public void addClass(){
+    Scanner userInput = new Scanner (System.in);
+	  FileIO directory = new FileIO( );                         //CREATE FILE IO OBJECT
+    System.out.print("Whats the name of the class?");
+    String n;
+    n = userInput.next();
+    classroom c = new classroom(n);
+    classList.add(c);
+    String path = c.className + '/' + c.className + ".csv";   //CREATE STRING FOR PATH
+	  directory.createDirectory(path);                          //CALL FILE IO CREATE DIRECTORY METHOD
+  }
+  
+CALL FROM CLASSROOM						//ADD A NEW GRADE
+
+   //from switch statement
+   case 2:
+      FileIO gradeFile = new FileIO( );
+      gradedAssignment g = new gradedAssignment( );
+      g.inputInfo( );
+      student s = new student( );
+      gradeFile.appendGrade(s, x, g, className);
+
+CALL FROM STUDENT
+
+  public void inputStudents(){
+	FileIO printStudent = new FileIO( );                        //CREATE FILE IO OBJECT
+        boolean cnt = true;
+        while( cnt == true){
+            Scanner userInput = new Scanner (System.in);
+            System.out.println("Would like to add another student?(Y/N)");
+            String ans;
+            ans = userInput.next();
+            if (ans.equals("Y") || ans.equals("y")){
+                student s = new student();
+                s.inputStudent();
+                studentList.add(s);
+                printStudent.appendStudent(s, className);   //APPEND STUDENT TO FILE WITH APPEND STUDENT METHOD
+	    }		
+	   
+            else{
+                cnt = false;
+            }
+        }
+    }
+    
+  public void displayStudents(){
+	  System.out.println("displayStudents( )");
+    for(int i=0; i < studentList.size(); i++){
+      studentList.get(i).displayStudent();
+		FileIO read = new FileIO( );                          //CREATE FILE IO OBJECT
+		read.readStudent(className);                          //READ / OUTPUT STUDENTS WITH READ STUDENT METHOD
+                                                
+  }
+    
